@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 from django.utils import timezone
 
 # Create your models here.
@@ -35,6 +36,6 @@ class GradoAdmin(admin.ModelAdmin):
     inlines = (AsignacionInLine,)
 
 class MateriaAdmin(admin.ModelAdmin):
-    inlines = (ActuacionInLine,)
+    inlines = (AsignacionInLine,)
 
 
