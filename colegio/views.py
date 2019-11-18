@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .forms import AsignacionForm
+from .models import Grado, Asignacion
 
 # Create your views here.
 def asignacion_new(request):
@@ -13,4 +15,4 @@ def asignacion_new(request):
     else:
         form = AsignacionForm()
 
-    return render(request, 'colegio/materia_new.html',{'form':form})
+    return render(request, 'colegio/grado_new.html',{'form':form})
