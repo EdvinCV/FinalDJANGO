@@ -5,13 +5,12 @@ def asignacion_new(request):
     if request.method == "POST":
         form = AsignacionForm(request.POST)
         if form.is_valid():
-            consulta = Consulta.objects.create(idAnimal=form.cleaned_data['idAnimal'], sintomas=form.cleaned_data['sintomas'], observaciones=form.cleaned_data['observaciones'], diagnostico = form.cleaned_data['diagnostico'], fechaConsulta = form.cleaned_data['fechaConsulta'])
-            for medicina_id in request.POST.getlist('receta'):
-                medicacion = Medicacion(medicina_id=medicina_id, consulta_id = consulta.id)
-                medicacion.save()
-            return redirect('lista_consultas')
+            grado = Grado.objects.create(nombre=form.cleaned_data['nombre'], seccion=form.cleaned_data['seccion'], aula=form.cleaned_data['aula'])
+            for materia_id in request.POST.getlist('materias'):
+                asignacion = Asignacion(materia_id=materia_id, grado_id = grado.id)
+                asignacion.save()
             
     else:
-        form = ConsultaForm()
+        form = AsignacionForm()
 
-    return render(request, 'persona/consulta_new.html',{'form':form})
+    return render(request, 'colegio/materia_new.html',{'form':form})
